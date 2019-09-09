@@ -1,7 +1,8 @@
 package PageObjects;
 
 import DriverManager.DriverManager;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -16,7 +17,7 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
 /**
  * created by Andrei_Korotkov 8/27/2019
  */
-public class LoginPage extends AbstractPage{
+public class LoginPage extends Menu{
 
     @FindBy(css = "input[placeholder='Имя ящика']")
     private TextInput loginInput;
@@ -39,13 +40,13 @@ public class LoginPage extends AbstractPage{
     @FindBy(how= How.CSS,using = "div.slot")
     HtmlElement ads;
 
+    private WebDriver driver= DriverManager.getDriver();
 
-//    private String login = "dfjwgge82h43g3uriy53h";
-//    private String password = "PlOkIjUHYGC";
 
-    public LoginPage () {
-        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(DriverManager.getDriver())), this);
-    }
+    private static final String LOGIN = "dfjwgge82h43g3uriy53h";
+    private static final String PASSWORD = "PlOkIjUHYGC";
+    private static final String DOMAIN = "@bk.ru";
+
 
     public LoginPage open () {
         driver.get("https://mail.ru//");
@@ -53,7 +54,7 @@ public class LoginPage extends AbstractPage{
     }
 
     public void enterLogin (String login) {
-
+        waitForElementVisible(loginInput.getWrappedElement());
         loginInput.sendKeys(login);
     }
 
@@ -62,9 +63,8 @@ public class LoginPage extends AbstractPage{
         return this;
     }
 
-    public LoginPage pressEnterPasswordButton() {
+    public void pressEnterPasswordButton() {
         enterPasswordButton.click();
-        return this;
     }
 
     public LoginPage enterPassword (String password) {
@@ -83,4 +83,16 @@ public class LoginPage extends AbstractPage{
         return DriverManager.getDriver().getCurrentUrl();
     }
 
+    public boolean isLoginErrorMessageVisible () {
+        return loginInput.isDisplayed();
+    }
+
+    public void loginToMail () {
+       open();
+       enterLogin(LOGIN);
+       chooseDomain(DOMAIN);
+       pressEnterPasswordButton();
+       enterPassword(PASSWORD);
+       loginToMailBox();
+    }
 }

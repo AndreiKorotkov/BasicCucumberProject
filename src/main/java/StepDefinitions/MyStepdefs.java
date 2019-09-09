@@ -48,4 +48,17 @@ public class MyStepdefs extends AbstractStepDefs{
     public void i_Am_On_My_Inbox_Page() {
         Assert.assertEquals("https://e.mail.ru/inbox/?back=1&afterReload=1", onLoginPage().getInboxUrl());
     }
+
+
+    @Then("Wrong login message is visible")
+    public void wrongLoginMessageIsVisible() {
+        onLoginPage().isLoginErrorMessageVisible();
+    }
+
+    @Given("I login to mailbox")
+    public void iLoginToMailbox() {
+        onLoginPage().loginToMail();
+    }
+
+
 }

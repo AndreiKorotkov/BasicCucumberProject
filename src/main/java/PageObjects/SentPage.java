@@ -1,5 +1,6 @@
 package PageObjects;
 
+import DriverManager.DriverManager;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,8 @@ public class SentPage extends Menu {
 
     @FindBy (xpath = "//div[@class='dataset__items']//a[last()-1]//button[contains(@class, 'll-av_centered')]")
     private WebElement lastLetterSelector;
+
+    private WebDriver driver= DriverManager.getDriver();
 
     public String readFirstLetterAdressee() {
         waitForElementClickable(firstLetterAdressee);

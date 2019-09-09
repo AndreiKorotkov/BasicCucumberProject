@@ -1,9 +1,11 @@
 package PageObjects;
 
+import DriverManager.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * created by Andrei_Korotkov 8/27/2019
@@ -22,6 +24,8 @@ public class Menu extends AbstractPage {
 //    public Menu (WebDriver driver) {
 //        super(driver);
 //    }
+
+    private WebDriver driver = DriverManager.getDriver();
 
     public String readNumberOfDrafts () {
         waitForElementHasAttribute(draftsButton, "title");

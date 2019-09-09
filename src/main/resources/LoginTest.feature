@@ -11,10 +11,11 @@ Scenario: Login with proper credentials
     And I click login button
     Then I am on my inbox page
 
+        @WrongCredentials
 Scenario: Login with wrong credentials
     Given I open mailbox page
     When I input login as "TestLogin1"
     And  I choose domain as "@list.ru"
     And I click Input password button
-    Then "Wrong login message" is visible
+    Then Wrong login message is visible
 

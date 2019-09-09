@@ -19,7 +19,7 @@ import DriverManager.DriverManager;
 @CucumberOptions(plugin = "pretty",
         features = "src/main/resources",
         glue = "StepDefinitions",
-        tags = "@Succesfull ")
+        tags = "@WrongCredentials")
 
 public class CucumberRunner {
 

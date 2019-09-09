@@ -1,5 +1,6 @@
 package PageObjects;
 
+import DriverManager.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,8 @@ public class DraftsPage extends Menu {
 //    public DraftsPage(WebDriver driver) {
 //        super(driver);
 //    }
+
+    private WebDriver driver= DriverManager.getDriver();
 
     public void clickFirstDraft() {
         waitForElementVisible(firstDraft);

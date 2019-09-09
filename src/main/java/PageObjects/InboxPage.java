@@ -1,5 +1,6 @@
 package PageObjects;
 
+import DriverManager.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,6 +42,8 @@ public class InboxPage extends Menu {
     private String adressee = "ankorotkov66@gmail.com";
     private String subject = "autoTest";
     private String body = "This is autotest letter";
+
+    private WebDriver driver= DriverManager.getDriver();
 
 //    public InboxPage (WebDriver driver) {
 //        super(driver);
