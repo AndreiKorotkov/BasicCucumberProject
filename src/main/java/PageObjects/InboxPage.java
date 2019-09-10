@@ -1,8 +1,6 @@
 package PageObjects;
 
-import DriverManager.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -43,23 +41,11 @@ public class InboxPage extends Menu {
     private String subject = "autoTest";
     private String body = "This is autotest letter";
 
-    private WebDriver driver= DriverManager.getDriver();
-
-//    public InboxPage (WebDriver driver) {
-//        super(driver);
-//    }
-
     public String getInboxPageURL () {
         waitForElementVisible(ads);
         return driver.getCurrentUrl();
     }
 
-    public InboxPage clickWriteLetter () {
-        waitForElementVisible(writeLetterButton);
-        JavascriptExecutor jsClicker = (JavascriptExecutor)driver;
-        jsClicker.executeScript("arguments[0].click();", writeLetterButton);
-        return this;
-    }
 
     public InboxPage enterAdressee () {
         waitForElementVisible(adresseeField);

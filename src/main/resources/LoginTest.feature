@@ -1,3 +1,4 @@
+@LoginTest
 Feature: Login to inbox
     I want to login to my mailbox
 # Tags: optional

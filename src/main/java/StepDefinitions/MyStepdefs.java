@@ -46,19 +46,65 @@ public class MyStepdefs extends AbstractStepDefs{
 
     @Then("I am on my inbox page")
     public void i_Am_On_My_Inbox_Page() {
-        Assert.assertEquals("https://e.mail.ru/inbox/?back=1&afterReload=1", onLoginPage().getInboxUrl());
+        Assert.assertEquals("dfjwgge82h43g3uriy53h@bk.ru", onMenu().readCurrentUsername());
     }
 
 
     @Then("Wrong login message is visible")
-    public void wrongLoginMessageIsVisible() {
+    public void wrong_Login_Message_Is_Visible() {
         onLoginPage().isLoginErrorMessageVisible();
     }
 
     @Given("I login to mailbox")
-    public void iLoginToMailbox() {
+    public void i_Login_To_Mailbox() {
         onLoginPage().loginToMail();
     }
 
 
+    @When("I click Write a letter button")
+    public void i_Click_Write_Letter_Button() {
+        onMenu().clickWriteLetter();
+    }
+
+
+    @And("I enter (.*) and (.*) of the letter")
+    public void i_Enter_Addressee_And_Body_Of_The_Letter(String addressee, String body) {
+        onDraftForm().inputAddressee(addressee);
+        onDraftForm().inputBodyOfTheLetter(body);
+    }
+
+    @And("I click Save a draft button")
+    public void i_Click_Save_A_Draft_Button() {
+        onDraftForm().clickSaveDraft();
+    }
+
+    @And("I click Close button")
+    public void i_Click_Close_Button() {
+        onDraftForm().closeDraftForm();
+    }
+
+
+    @And("I go to Drafts folder")
+    public void i_Go_To_Drafts_Folder(){
+        onMenu().goToDrafts();
+    }
+
+
+    @And("I click the first draft")
+    public void i_Click_The_First_Draft() {
+        onDraftsPage().clickFirstDraft();
+    }
+
+    @Then("I check (.*) and (.*) of the letter")
+    public void i_Check_Addressee_And_Body_Of_The_Letter(String addressee, String body) {
+        System.out.println(onDraftForm().readAdresseeOfLetter());
+        onDraftForm().readBodyOfLetter();
+        Assert.assertTrue(addressee.equals(onDraftForm().readAdresseeOfLetter()) && body.equals(onDraftForm().readBodyOfLetter()));
+        onDraftForm().closeDraftForm();
+    }
+
+    @Given("There is at least one draft")
+    public void there_Is_At_Least_One_Draft() {
+        Assert.assertTrue(onDraftsPage().checkDraftsArePresent());
+    }
 }

@@ -1,11 +1,10 @@
 package PageObjects;
 
-import DriverManager.DriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.How;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
 /**
  * created by Andrei_Korotkov 8/27/2019
@@ -16,24 +15,29 @@ public class Menu extends AbstractPage {
     private WebElement draftsButton;
 
     @FindBy(css = "a[href=\"/sent/\"]")
-    private WebElement sentMessagesButton;
+    private Button sentMessagesButton;
 
     @FindBy(css = "a[title=\"выход\"]")
-    private WebElement exitButton;
+    private Button exitButton;
 
-//    public Menu (WebDriver driver) {
-//        super(driver);
-//    }
+    @FindBy(how = How.CSS, using = "span.compose-button")
+    private Button writeLetterButton;
 
-    private WebDriver driver = DriverManager.getDriver();
+    @FindBy(how=How.CSS,using = "div.slot")
+    private HtmlElement ads;
+
+    @FindBy(css = "div.dimmer")
+    private HtmlElement dimmer;
+
+    @FindBy (id = "PH_user-email")
+    private HtmlElement currentUsername;
 
     public String readNumberOfDrafts () {
         waitForElementHasAttribute(draftsButton, "title");
-        JavascriptExecutor jsReader = (JavascriptExecutor)driver;
         return draftsButton.getAttribute("title");
     }
 
-    public Menu goToDrafts () {
+    public Menu goToDrafts (){
         waitForElementClickable(draftsButton);
         draftsButton.click();
         return this;
@@ -44,9 +48,19 @@ public class Menu extends AbstractPage {
         sentMessagesButton.click();
     }
 
+    public void clickWriteLetter () {
+        waitForElementVisible(ads.getWrappedElement());
+        writeLetterButton.click();
+    }
+
     public Menu exitAccount () {
         waitForElementVisible(exitButton);
         exitButton.click();
         return this;
+    }
+
+    public String readCurrentUsername () {
+        waitForElementVisible(ads.getWrappedElement());
+        return currentUsername.getText();
     }
 }

@@ -23,9 +23,6 @@ public class DraftsPage extends Menu {
     @FindBy(xpath = "//div[contains (@class, \"focus-zone\")]//span[contains(@class, \"text\")]")
     private WebElement adresseeField;
 
-    @FindBy(xpath = "//div[contains(@id, \"BODY\")]/div/div/div")
-    private WebElement letterBodyField;
-
     @FindBy(css = "span[title=\"Отправить\"]")
     private WebElement sendLetterButton;
 
@@ -43,22 +40,13 @@ public class DraftsPage extends Menu {
         firstDraft.click();
     }
 
-    public String readAdresseeOfLetter() {
-        waitForElementVisible(focusZone);
-        return adresseeField.getText();
-    }
-
-    public String readSubjectOfLetter() {
-        return subjectField.getAttribute("value");
-    }
-
-    public String readBodyOfLetter() {
-        return letterBodyField.getText();
-    }
-
     public DraftsPage sendLetter() {
         sendLetterButton.click();
         return this;
+    }
+
+    public boolean checkDraftsArePresent () {
+        return firstDraft.isDisplayed();
     }
 
     public DraftsPage closeReportLetterMessage() {

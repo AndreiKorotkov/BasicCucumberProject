@@ -1,7 +1,5 @@
 package Runner;
 
-
-import PageObjects.LoginPage;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
@@ -19,10 +17,9 @@ import DriverManager.DriverManager;
 @CucumberOptions(plugin = "pretty",
         features = "src/main/resources",
         glue = "StepDefinitions",
-        tags = "@WrongCredentials")
+        tags = "@DraftsTest")
 
 public class CucumberRunner {
-
 
     @AfterClass
     public static void finish () {

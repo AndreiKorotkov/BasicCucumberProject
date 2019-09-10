@@ -26,10 +26,47 @@ public class DraftForm extends AbstractPage {
     @FindBy(xpath = "//div[@class='contactsContainer--3RMuQ']//span[contains(@class, 'text')]")
     private HtmlElement filledAdresseeField;
 
+    @FindBy(xpath = "//div[contains(@id, \"BODY\")]/div/div/div")
+    private TextInput letterBodyField;
+
     @FindBy(xpath = "//div[@class=\"focus-zone focus-zone_fluid\"]//button[@title=\"Закрыть\"]")
     private Button closeFocusedZoneButton;
 
     @FindBy(xpath = "//div[@class=\"focus-zone focus-zone_fluid\"]")
     private HtmlElement focusZone;
 
+    @FindBy (id = "dimmer")
+    private WebElement dimmer;
+
+    public void inputAddressee (String addressee) {
+        waitForElementVisible(adresseeField.getWrappedElement());
+        adresseeField.sendKeys(addressee);
+    }
+
+    public void inputBodyOfTheLetter (String body) {
+        waitForElementVisible(letterBody.getWrappedElement());
+        letterBody.sendKeys(body);
+    }
+
+    public String readAdresseeOfLetter() {
+        waitForElementVisible(focusZone.getWrappedElement());
+        return filledAdresseeField.getText();
+    }
+
+
+    public String readBodyOfLetter() {
+        return letterBodyField.getWrappedElement().getText();
+    }
+
+
+    public void clickSaveDraft () {
+        waitForElementClickable(saveDraftButton.getWrappedElement());
+        saveDraftButton.click();
+    }
+
+    public void closeDraftForm () {
+        waitForElementClickable(closeFocusedZoneButton.getWrappedElement());
+        closeFocusedZoneButton.click();
+        waitForElementNotVisible(dimmer);
+    }
 }
