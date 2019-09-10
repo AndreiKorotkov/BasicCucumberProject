@@ -1,7 +1,6 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,6 +11,7 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 /**
  * created by Andrei_Korotkov 9/9/2019
  */
+
 public class DraftForm extends AbstractPage {
 
     @FindBy(xpath = "//div[@class='contactsContainer--3RMuQ']//input")
@@ -38,12 +38,6 @@ public class DraftForm extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"focus-zone focus-zone_fluid\"]")
     private HtmlElement focusZone;
 
-    @FindBy (id = "dimmer")
-    private HtmlElement dimmer;
-
-    @FindBy (css = "div.input--3slxg")
-    private WebElement addresseeField;
-
     public void inputAddressee (String addressee) {
         waitForElementVisible(adresseeField.getWrappedElement());
         adresseeField.sendKeys(addressee);
@@ -59,11 +53,9 @@ public class DraftForm extends AbstractPage {
         return filledAdresseeField.getText();
     }
 
-
     public String readBodyOfLetter() {
         return letterBodyField.getWrappedElement().getText();
     }
-
 
     public void clickSaveDraft () {
         waitForElementClickable(saveDraftButton.getWrappedElement());
@@ -72,8 +64,7 @@ public class DraftForm extends AbstractPage {
 
     public void closeDraftForm () {
         closeFocusedZoneButton.click();
-        waitForElementNotVisible(dimmer.getWrappedElement());
-//        waitForElementNotVisible(addresseeField);
-        new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector("div.input--3slxg"))));
+        //waitForElementNotVisible(saveDraftButton.getWrappedElement());
+        new WebDriverWait(driver, 10).until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector("span.button2_base:nth-child(2)"))));
     }
 }

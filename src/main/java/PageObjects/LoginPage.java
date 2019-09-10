@@ -2,21 +2,18 @@ package PageObjects;
 
 import DriverManager.DriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.Form;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.TextInput;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 /**
  * created by Andrei_Korotkov 8/27/2019
  */
+
 public class LoginPage extends Menu{
 
     @FindBy(css = "input[placeholder='Имя ящика']")
@@ -95,5 +92,10 @@ public class LoginPage extends Menu{
        enterPassword(PASSWORD);
        loginToMailBox();
        waitForElementVisible(ads.getWrappedElement());
+    }
+
+    public void clearLoginInput () {
+        waitForElementVisible(loginInput.getWrappedElement());
+        loginInput.clear();
     }
 }

@@ -11,48 +11,7 @@ import org.junit.Assert;
 /**
  * created by Andrei_Korotkov 9/9/2019
  */
-public class MyStepdefs extends AbstractStepDefs{
-
-    @Given("I open mailbox page")
-    public void i_Open_MailBox_Page() {
-        DriverManager.getDriver().get("https://mail.ru//");
-    }
-
-    @When("I input login as {string}")
-    public void iInputLoginAs(String arg0) {
-        onLoginPage().enterLogin(arg0);
-    }
-
-    @And("I choose domain as {string}")
-    public void i_Choose_Domain(String arg0) {
-        onLoginPage().chooseDomain(arg0);
-    }
-
-    @And("I click Input password button")
-    public void i_Click_Input_password_Button() {
-        onLoginPage().pressEnterPasswordButton();
-    }
-
-    @And("input password as {string}")
-    public void input_Password(String arg0) {
-        onLoginPage().enterPassword(arg0);
-    }
-
-    @And("I click login button")
-    public void i_Click_Login_Button() {
-        onLoginPage().loginToMailBox();
-    }
-
-    @Then("I am on my inbox page")
-    public void i_Am_On_My_Inbox_Page() {
-        Assert.assertEquals("dfjwgge82h43g3uriy53h@bk.ru", onMenu().readCurrentUsername());
-    }
-
-
-    @Then("Wrong login message is visible")
-    public void wrong_Login_Message_Is_Visible() {
-        onLoginPage().isLoginErrorMessageVisible();
-    }
+public class DraftsTestStepdefs extends AbstractStepDefs{
 
     @Given("I login to mailbox")
     public void i_Login_To_Mailbox() {
@@ -113,11 +72,12 @@ public class MyStepdefs extends AbstractStepDefs{
     @And("I click Delete")
     public void i_Click_Delete() {
         onMenu().clickDelete();
+
     }
 
     @Then("I check there is no drafts in the Drafts folder")
     public void i_Check_There_Is_No_Drafts_In_The_Drafts_Folder() {
-        Assert.assertFalse(onDraftsPage().checkDraftsArePresent());
+        Assert.assertEquals( "Нет писем", onMenu().readNumberOfDrafts());
     }
 
     @Given("Cache is cleared")
@@ -128,5 +88,11 @@ public class MyStepdefs extends AbstractStepDefs{
     @And("I exit account")
     public void i_Exit_Account() {
         onMenu().exitAccount();
+    }
+
+    @And("Login field is cleared")
+    public void login_Field_Is_Cleared() {
+        DriverManager.getDriver().get("https://mail.ru//");
+        onLoginPage().clearLoginInput();
     }
 }

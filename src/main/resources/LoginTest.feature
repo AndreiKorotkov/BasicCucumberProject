@@ -3,7 +3,7 @@ Feature: Login to inbox
     I want to login to my mailbox
 
     Background: clear cache
-        Given Cache is cleared
+        Given Login field is cleared
 
     @Succesfull
 Scenario: Login with proper credentials
