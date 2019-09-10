@@ -1,7 +1,10 @@
 @LoginTest
 Feature: Login to inbox
     I want to login to my mailbox
-# Tags: optional
+
+    Background: clear cache
+        Given Cache is cleared
+
     @Succesfull
 Scenario: Login with proper credentials
     Given I open mailbox page
@@ -11,6 +14,7 @@ Scenario: Login with proper credentials
     And input password as "PlOkIjUHYGC"
     And I click login button
     Then I am on my inbox page
+    And I exit account
 
         @WrongCredentials
 Scenario: Login with wrong credentials

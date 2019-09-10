@@ -38,7 +38,7 @@ public class LoginPage extends Menu{
     private HtmlElement logingErrorMessage;
 
     @FindBy(how= How.CSS,using = "div.slot")
-    HtmlElement ads;
+    private HtmlElement ads;
 
     private WebDriver driver= DriverManager.getDriver();
 

@@ -17,7 +17,7 @@ import DriverManager.DriverManager;
 @CucumberOptions(plugin = "pretty",
         features = "src/main/resources",
         glue = "StepDefinitions",
-        tags = "@Drafts")
+        tags = "@DraftsTest")
 
 public class CucumberRunner {
 

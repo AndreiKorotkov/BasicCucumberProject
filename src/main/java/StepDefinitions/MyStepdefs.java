@@ -1,7 +1,6 @@
 package StepDefinitions;
 
 import DriverManager.DriverManager;
-import PageObjects.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -97,7 +96,7 @@ public class MyStepdefs extends AbstractStepDefs{
 
     @Then("I check (.*) and (.*) of the letter")
     public void i_Check_Addressee_And_Body_Of_The_Letter(String addressee, String body) {
-        Assert.assertTrue(addressee.equals(onDraftForm().readAdresseeOfLetter()) && body.equals(onDraftForm().readBodyOfLetter()));
+        Assert.assertTrue(onDraftForm().readAdresseeOfLetter().equals(addressee) && onDraftForm().readBodyOfLetter().equals(body));
         onDraftForm().closeDraftForm();
     }
 
@@ -119,5 +118,15 @@ public class MyStepdefs extends AbstractStepDefs{
     @Then("I check there is no drafts in the Drafts folder")
     public void i_Check_There_Is_No_Drafts_In_The_Drafts_Folder() {
         Assert.assertFalse(onDraftsPage().checkDraftsArePresent());
+    }
+
+    @Given("Cache is cleared")
+    public void cacheIsCleared() {
+        DriverManager.getDriver().get("chrome://settings/clearBrowserData");
+    }
+
+    @And("I exit account")
+    public void i_Exit_Account() {
+        onMenu().exitAccount();
     }
 }

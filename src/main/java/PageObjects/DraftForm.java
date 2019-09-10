@@ -1,7 +1,10 @@
 package PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -38,6 +41,9 @@ public class DraftForm extends AbstractPage {
     @FindBy (id = "dimmer")
     private HtmlElement dimmer;
 
+    @FindBy (css = "div.input--3slxg")
+    private WebElement addresseeField;
+
     public void inputAddressee (String addressee) {
         waitForElementVisible(adresseeField.getWrappedElement());
         adresseeField.sendKeys(addressee);
@@ -67,5 +73,7 @@ public class DraftForm extends AbstractPage {
     public void closeDraftForm () {
         closeFocusedZoneButton.click();
         waitForElementNotVisible(dimmer.getWrappedElement());
+//        waitForElementNotVisible(addresseeField);
+        new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector("div.input--3slxg"))));
     }
 }
