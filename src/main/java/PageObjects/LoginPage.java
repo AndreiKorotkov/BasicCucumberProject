@@ -94,5 +94,6 @@ public class LoginPage extends Menu{
        pressEnterPasswordButton();
        enterPassword(PASSWORD);
        loginToMailBox();
+       waitForElementVisible(ads.getWrappedElement());
     }
 }

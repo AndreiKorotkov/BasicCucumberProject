@@ -12,7 +12,7 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 public class Menu extends AbstractPage {
 
     @FindBy(css = "a[href=\"/drafts/\"]")
-    private WebElement draftsButton;
+    private Button draftsButton;
 
     @FindBy(css = "a[href=\"/sent/\"]")
     private Button sentMessagesButton;
@@ -24,7 +24,7 @@ public class Menu extends AbstractPage {
     private Button writeLetterButton;
 
     @FindBy(how=How.CSS,using = "div.slot")
-    private HtmlElement ads;
+    protected HtmlElement ads;
 
     @FindBy(css = "div.dimmer")
     private HtmlElement dimmer;
@@ -32,14 +32,16 @@ public class Menu extends AbstractPage {
     @FindBy (id = "PH_user-email")
     private HtmlElement currentUsername;
 
-    public String readNumberOfDrafts () {
-        waitForElementHasAttribute(draftsButton, "title");
-        return draftsButton.getAttribute("title");
-    }
+    @FindBy (css = "span.button2_select-all")
+    private Button selectAllButton;
+
+    @FindBy (css = "span.button2_delete")
+    private Button deleteButton;
 
     public Menu goToDrafts (){
-        waitForElementClickable(draftsButton);
-        draftsButton.click();
+        if (!driver.getCurrentUrl().equals("https://e.mail.ru/drafts/")){
+        waitForElementVisible(draftsButton.getWrappedElement());
+        draftsButton.click();}
         return this;
     }
 
@@ -62,5 +64,15 @@ public class Menu extends AbstractPage {
     public String readCurrentUsername () {
         waitForElementVisible(ads.getWrappedElement());
         return currentUsername.getText();
+    }
+
+    public void selectAll () {
+        waitForElementClickable(selectAllButton.getWrappedElement());
+        selectAllButton.click();
+    }
+
+    public void clickDelete () {
+        waitForElementClickable(deleteButton.getWrappedElement());
+        deleteButton.click();
     }
 }

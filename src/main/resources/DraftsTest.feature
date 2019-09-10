@@ -1,10 +1,9 @@
-@DraftsTest
-Feature: Saving a draft of a letter
 
-  @All
+Feature: Work with drafts
+
+  @Drafts @DeleteDrafts
   Scenario: Login to mailbox
     Given I login to mailbox
-    When I go to Drafts folder
     Then I am on my inbox page
 
   @Drafts
@@ -24,8 +23,11 @@ Feature: Saving a draft of a letter
       | PetrPetrov@mail.ru   | This is test letter |
       | SidorSidorov@mail.ru | This is test letter |
 
+
+    @DeleteDrafts
   Scenario:  Delete all drafts
-    Given There is at least one draft
+    Given I go to Drafts folder
+    And There is at least one draft
     When I click Select all button
-    And Click Delete
+    And I click Delete
     Then I check there is no drafts in the Drafts folder

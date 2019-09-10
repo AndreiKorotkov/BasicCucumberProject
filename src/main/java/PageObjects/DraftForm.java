@@ -36,7 +36,7 @@ public class DraftForm extends AbstractPage {
     private HtmlElement focusZone;
 
     @FindBy (id = "dimmer")
-    private WebElement dimmer;
+    private HtmlElement dimmer;
 
     public void inputAddressee (String addressee) {
         waitForElementVisible(adresseeField.getWrappedElement());
@@ -65,8 +65,7 @@ public class DraftForm extends AbstractPage {
     }
 
     public void closeDraftForm () {
-        waitForElementClickable(closeFocusedZoneButton.getWrappedElement());
         closeFocusedZoneButton.click();
-        waitForElementNotVisible(dimmer);
+        waitForElementNotVisible(dimmer.getWrappedElement());
     }
 }

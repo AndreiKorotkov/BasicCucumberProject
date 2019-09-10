@@ -32,7 +32,4 @@ public class AbstractPage {
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.invisibilityOf(element));
     }
 
-    protected void waitForElementHasAttribute (WebElement element, String attribute) {
-        new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.attributeToBeNotEmpty(element,attribute));
-    }
 }

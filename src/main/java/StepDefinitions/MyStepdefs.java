@@ -97,8 +97,6 @@ public class MyStepdefs extends AbstractStepDefs{
 
     @Then("I check (.*) and (.*) of the letter")
     public void i_Check_Addressee_And_Body_Of_The_Letter(String addressee, String body) {
-        System.out.println(onDraftForm().readAdresseeOfLetter());
-        onDraftForm().readBodyOfLetter();
         Assert.assertTrue(addressee.equals(onDraftForm().readAdresseeOfLetter()) && body.equals(onDraftForm().readBodyOfLetter()));
         onDraftForm().closeDraftForm();
     }
@@ -106,5 +104,20 @@ public class MyStepdefs extends AbstractStepDefs{
     @Given("There is at least one draft")
     public void there_Is_At_Least_One_Draft() {
         Assert.assertTrue(onDraftsPage().checkDraftsArePresent());
+    }
+
+    @When("I click Select all button")
+    public void i_Click_Select_All_Button() {
+        onMenu().selectAll();
+    }
+
+    @And("I click Delete")
+    public void i_Click_Delete() {
+        onMenu().clickDelete();
+    }
+
+    @Then("I check there is no drafts in the Drafts folder")
+    public void i_Check_There_Is_No_Drafts_In_The_Drafts_Folder() {
+        Assert.assertFalse(onDraftsPage().checkDraftsArePresent());
     }
 }
