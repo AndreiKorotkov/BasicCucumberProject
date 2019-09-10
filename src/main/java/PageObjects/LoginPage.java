@@ -2,22 +2,18 @@ package PageObjects;
 
 import DriverManager.DriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.Form;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.TextInput;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 /**
  * created by Andrei_Korotkov 8/27/2019
  */
-public class LoginPage extends Menu{
+public class LoginPage extends Menu {
 
     @FindBy(css = "input[placeholder='Имя ящика']")
     private TextInput loginInput;
@@ -34,13 +30,13 @@ public class LoginPage extends Menu{
     @FindBy(id = "auth")
     private Form loginForm;
 
-    @FindBy (id = "mailbox:error")
+    @FindBy(id = "mailbox:error")
     private HtmlElement logingErrorMessage;
 
-    @FindBy(how= How.CSS,using = "div.slot")
+    @FindBy(how = How.CSS, using = "div.slot")
     private HtmlElement ads;
 
-    private WebDriver driver= DriverManager.getDriver();
+    private WebDriver driver = DriverManager.getDriver();
 
 
     private static final String LOGIN = "dfjwgge82h43g3uriy53h";
@@ -48,12 +44,12 @@ public class LoginPage extends Menu{
     private static final String DOMAIN = "@bk.ru";
 
 
-    public LoginPage open () {
+    public LoginPage open() {
         driver.get("https://mail.ru//");
         return this;
     }
 
-    public void enterLogin (String login) {
+    public void enterLogin(String login) {
         waitForElementVisible(loginInput.getWrappedElement());
         loginInput.sendKeys(login);
     }
@@ -67,33 +63,37 @@ public class LoginPage extends Menu{
         enterPasswordButton.click();
     }
 
-    public LoginPage enterPassword (String password) {
+    public LoginPage enterPassword(String password) {
         waitForElementVisible(passwordInput.getWrappedElement());
         passwordInput.sendKeys(password);
         return this;
     }
 
-    public LoginPage loginToMailBox () {
+    public LoginPage loginToMailBox() {
         loginForm.submit();
         return this;
     }
 
-    public String getInboxUrl () {
+    public String getInboxUrl() {
         waitForElementVisible(ads.getWrappedElement());
         return DriverManager.getDriver().getCurrentUrl();
     }
 
-    public boolean isLoginErrorMessageVisible () {
+    public boolean isLoginErrorMessageVisible() {
         return loginInput.isDisplayed();
     }
 
-    public void loginToMail () {
-       open();
-       enterLogin(LOGIN);
-       chooseDomain(DOMAIN);
-       pressEnterPasswordButton();
-       enterPassword(PASSWORD);
-       loginToMailBox();
-       waitForElementVisible(ads.getWrappedElement());
+    public void loginToMail() {
+        open();
+        enterLogin(LOGIN);
+        chooseDomain(DOMAIN);
+        pressEnterPasswordButton();
+        enterPassword(PASSWORD);
+        loginToMailBox();
+        waitForElementVisible(ads.getWrappedElement());
+    }
+
+    public void clearLoginInput() {
+        loginInput.clear();
     }
 }

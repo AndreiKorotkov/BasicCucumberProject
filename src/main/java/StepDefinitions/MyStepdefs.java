@@ -11,7 +11,7 @@ import org.junit.Assert;
 /**
  * created by Andrei_Korotkov 9/9/2019
  */
-public class MyStepdefs extends AbstractStepDefs{
+public class MyStepdefs extends AbstractStepDefs {
 
     @Given("I open mailbox page")
     public void i_Open_MailBox_Page() {
@@ -84,7 +84,7 @@ public class MyStepdefs extends AbstractStepDefs{
 
 
     @And("I go to Drafts folder")
-    public void i_Go_To_Drafts_Folder(){
+    public void i_Go_To_Drafts_Folder() {
         onMenu().goToDrafts();
     }
 

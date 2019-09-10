@@ -13,7 +13,7 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
  * created by Andrei_Korotkov 8/27/2019
  */
 class AbstractPage {
-    WebDriver driver= DriverManager.getDriver();
+    WebDriver driver = DriverManager.getDriver();
     private static final int WAIT_FOR_ELEMENT_TIMEOUT_SECONDS = 10;
 
     AbstractPage() {

@@ -73,7 +73,6 @@ public class DraftForm extends AbstractPage {
     public void closeDraftForm () {
         closeFocusedZoneButton.click();
         waitForElementNotVisible(dimmer.getWrappedElement());
-//        waitForElementNotVisible(addresseeField);
         new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector("div.input--3slxg"))));
     }
 }

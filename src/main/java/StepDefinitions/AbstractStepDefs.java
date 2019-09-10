@@ -1,6 +1,5 @@
 package StepDefinitions;
 
-import DriverManager.DriverManager;
 import PageObjects.DraftForm;
 import PageObjects.DraftsPage;
 import PageObjects.LoginPage;
@@ -15,14 +14,19 @@ public abstract class AbstractStepDefs {
     private DraftForm draftForm = new DraftForm();
     private DraftsPage draftsPage = new DraftsPage();
 
-    public LoginPage onLoginPage () {
+    public LoginPage onLoginPage() {
         return loginPage;
     }
-    public Menu onMenu () {return menu;}
-    public DraftForm onDraftForm () {
+
+    public Menu onMenu() {
+        return menu;
+    }
+
+    public DraftForm onDraftForm() {
         return draftForm;
     }
-    public DraftsPage onDraftsPage () {
+
+    public DraftsPage onDraftsPage() {
         return draftsPage;
     }
 

@@ -1,6 +1,5 @@
 package PageObjects;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import ru.yandex.qatools.htmlelements.element.Button;
@@ -23,25 +22,26 @@ public class Menu extends AbstractPage {
     @FindBy(how = How.CSS, using = "span.compose-button")
     private Button writeLetterButton;
 
-    @FindBy(how=How.CSS,using = "div.slot")
+    @FindBy(how = How.CSS, using = "div.slot")
     protected HtmlElement ads;
 
     @FindBy(css = "div.dimmer")
     private HtmlElement dimmer;
 
-    @FindBy (id = "PH_user-email")
+    @FindBy(id = "PH_user-email")
     private HtmlElement currentUsername;
 
-    @FindBy (css = "span.button2_select-all")
+    @FindBy(css = "span.button2_select-all")
     private Button selectAllButton;
 
-    @FindBy (css = "span.button2_delete")
+    @FindBy(css = "span.button2_delete")
     private Button deleteButton;
 
-    public Menu goToDrafts (){
-        if (!driver.getCurrentUrl().equals("https://e.mail.ru/drafts/")){
-        waitForElementVisible(draftsButton.getWrappedElement());
-        draftsButton.click();}
+    public Menu goToDrafts() {
+        if (!driver.getCurrentUrl().equals("https://e.mail.ru/drafts/")) {
+            waitForElementVisible(draftsButton.getWrappedElement());
+            draftsButton.click();
+        }
         return this;
     }
 
@@ -50,28 +50,28 @@ public class Menu extends AbstractPage {
         sentMessagesButton.click();
     }
 
-    public void clickWriteLetter () {
+    public void clickWriteLetter() {
         waitForElementVisible(ads.getWrappedElement());
         writeLetterButton.click();
     }
 
-    public Menu exitAccount () {
+    public Menu exitAccount() {
         waitForElementVisible(exitButton);
         exitButton.click();
         return this;
     }
 
-    public String readCurrentUsername () {
+    public String readCurrentUsername() {
         waitForElementVisible(ads.getWrappedElement());
         return currentUsername.getText();
     }
 
-    public void selectAll () {
+    public void selectAll() {
         waitForElementClickable(selectAllButton.getWrappedElement());
         selectAllButton.click();
     }
 
-    public void clickDelete () {
+    public void clickDelete() {
         waitForElementClickable(deleteButton.getWrappedElement());
         deleteButton.click();
     }
