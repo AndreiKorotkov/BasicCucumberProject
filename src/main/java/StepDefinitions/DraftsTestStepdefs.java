@@ -61,7 +61,13 @@ public class DraftsTestStepdefs extends AbstractStepDefs{
 
     @Given("There is at least one draft")
     public void there_Is_At_Least_One_Draft() {
-        Assert.assertTrue(onDraftsPage().checkDraftsArePresent());
+        if (onMenu().readNumberOfDrafts().equals("Нет писем")) {
+           onMenu().clickWriteLetter();
+           onDraftForm().inputAddressee("test@mail.ru");
+           onDraftForm().inputBodyOfTheLetter("This is test letter");
+           onDraftForm().clickSaveDraft();
+           onDraftForm().closeDraftForm();
+        }
     }
 
     @When("I click Select all button")
