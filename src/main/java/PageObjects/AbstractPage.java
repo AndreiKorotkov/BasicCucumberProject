@@ -13,23 +13,22 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
  * created by Andrei_Korotkov 8/27/2019
  */
 class AbstractPage {
-    WebDriver driver = DriverManager.getDriver();
+    protected  WebDriver driver= DriverManager.getDriver();
     private static final int WAIT_FOR_ELEMENT_TIMEOUT_SECONDS = 10;
 
-    AbstractPage() {
+    protected AbstractPage() {
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(DriverManager.getDriver())), this);
     }
 
-    void waitForElementVisible(WebElement element) {
+    protected void waitForElementVisible(WebElement element) {
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOf(element));
     }
 
-    void waitForElementClickable(WebElement element) {
+    protected void waitForElementClickable(WebElement element) {
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    void waitForElementNotVisible(WebElement element) {
+    protected void waitForElementNotVisible(WebElement element) {
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.invisibilityOf(element));
     }
-
 }

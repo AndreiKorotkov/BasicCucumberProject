@@ -5,9 +5,7 @@ import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
 
-
 import DriverManager.DriverManager;
-
 
 /**
  * created by Andrei_Korotkov 9/9/2019

@@ -15,13 +15,13 @@ Feature: Work with drafts
     And I click Close button
     And I go to Drafts folder
     And I click the first draft
-    Then I check <draftAddressee> and <draftBody> of the letter
+    Then I check <addressee> and <body> of the letter
 
     Examples:
-      | addressee            | body                | draftAddressee      | draftBody           |
-      | IvanIvanov@mail.ru   | This is test letter |IvanIvanov@mail.ru   | This is test letter |
-      | PetrPetrov@mail.ru   | This is test letter |PetrPetrov@mail.ru   | This is test letter |
-      | SidorSidorov@mail.ru | This is test letter |SidorSidorov@mail.ru | This is test letter |
+      | addressee            | body                |
+      | IvanIvanov@mail.ru   | This is test letter |
+      | PetrPetrov@mail.ru   | This is test letter |
+      | SidorSidorov@mail.ru | This is test letter |
 
 
     @DeleteDrafts

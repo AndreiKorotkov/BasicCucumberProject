@@ -45,6 +45,11 @@ public class Menu extends AbstractPage {
         return this;
     }
 
+    public String readNumberOfDrafts() {
+        waitForElementClickable(draftsButton.getWrappedElement());
+        return draftsButton.getAttribute("title");
+    }
+
     public void goToSentMessages() {
         waitForElementVisible(sentMessagesButton);
         sentMessagesButton.click();

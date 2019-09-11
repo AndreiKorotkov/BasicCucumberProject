@@ -21,33 +21,12 @@ public class DraftsPage extends Menu {
     @FindBy(xpath = "//div[contains (@class, \"focus-zone\")]//span[contains(@class, \"text\")]")
     private WebElement adresseeField;
 
-    @FindBy(css = "span[title=\"Отправить\"]")
-    private WebElement sendLetterButton;
-
-    @FindBy(xpath = "//div[@class=\"layer-sent-page\"]//span[@class=\"button2__ico\"]")
-    private WebElement closeSentReportButton;
-
     public void clickFirstDraft() {
-
         firstDraft.click();
-    }
-
-    public DraftsPage sendLetter() {
-        sendLetterButton.click();
-        return this;
     }
 
     public boolean checkDraftsArePresent () {
         return firstDraft.exists();
     }
 
-    public HtmlElement getFirstDraft() {
-        return firstDraft;
-    }
-
-    public DraftsPage closeReportLetterMessage() {
-        waitForElementVisible(closeSentReportButton);
-        closeSentReportButton.click();
-        return this;
-    }
 }
