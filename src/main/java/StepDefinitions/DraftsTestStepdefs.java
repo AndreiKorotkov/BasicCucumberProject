@@ -19,8 +19,8 @@ public class DraftsTestStepdefs extends AbstractStepDefs{
     }
 
 
-    @When("I click Write a letter button")
-    public void i_Click_Write_Letter_Button() {
+    @When("I click Write a letter button on Menu")
+    public void i_Click_Write_Letter_Button_on_Menu() {
         onMenu().clickWriteLetter();
     }
 
@@ -31,13 +31,13 @@ public class DraftsTestStepdefs extends AbstractStepDefs{
         onDraftForm().inputBodyOfTheLetter(body);
     }
 
-    @And("I click Save a draft button")
-    public void i_Click_Save_A_Draft_Button() {
+    @And("I click Save a draft button on Drafts Form")
+    public void i_Click_Save_A_Draft_Button_on_Drafts_Form() {
         onDraftForm().clickSaveDraft();
     }
 
-    @And("I click Close button")
-    public void i_Click_Close_Button() {
+    @And("I click Close button on Drafts Form")
+    public void i_Click_Close_Button_on_Drafts_Form() {
         onDraftForm().closeDraftForm();
     }
 
@@ -48,8 +48,8 @@ public class DraftsTestStepdefs extends AbstractStepDefs{
     }
 
 
-    @And("I click the first draft")
-    public void i_Click_The_First_Draft() {
+    @And("I click the first draft on Drafts Page")
+    public void i_Click_The_First_Draft_on_Drafts_Page() {
         onDraftsPage().clickFirstDraft();
     }
 
@@ -81,7 +81,7 @@ public class DraftsTestStepdefs extends AbstractStepDefs{
     }
 
     @Given("Cache is cleared")
-    public void cacheIsCleared() {
+    public void cache_Is_Cleared() {
         DriverManager.getDriver().get("chrome://settings/clearBrowserData");
     }
 

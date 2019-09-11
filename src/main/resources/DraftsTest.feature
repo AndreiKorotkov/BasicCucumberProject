@@ -9,12 +9,12 @@ Feature: Work with drafts
   @Drafts
   Scenario Outline:Saving drafts
     Given I am on my inbox page
-    When I click Write a letter button
+    When I click Write a letter button on Menu
     And I enter <addressee> and <body> of the letter
-    And I click Save a draft button
-    And I click Close button
+    And I click Save a draft button on Drafts Form
+    And I click Close button on Drafts Form
     And I go to Drafts folder
-    And I click the first draft
+    And I click the first draft on Drafts Page
     Then I check <addressee> and <body> of the letter
 
     Examples:

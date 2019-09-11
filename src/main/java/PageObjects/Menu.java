@@ -60,10 +60,9 @@ public class Menu extends AbstractPage {
         writeLetterButton.click();
     }
 
-    public Menu exitAccount() {
+    public void exitAccount() {
         waitForElementVisible(exitButton);
         exitButton.click();
-        return this;
     }
 
     public String readCurrentUsername() {

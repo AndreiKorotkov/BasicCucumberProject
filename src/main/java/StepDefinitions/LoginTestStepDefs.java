@@ -24,8 +24,8 @@ public class LoginTestStepDefs extends AbstractStepDefs {
         onLoginPage().chooseDomain(arg0);
     }
 
-    @And("I click Input password button")
-    public void i_Click_Input_password_Button() {
+    @And("I click Input password button on Login Page")
+    public void i_Click_Input_password_Button_on_Login_Page() {
         onLoginPage().pressEnterPasswordButton();
     }
 
@@ -34,8 +34,8 @@ public class LoginTestStepDefs extends AbstractStepDefs {
         onLoginPage().enterPassword(arg0);
     }
 
-    @And("I click login button")
-    public void i_Click_Login_Button() {
+    @And("I click login button on Login Page")
+    public void i_Click_Login_Button_on_Login_Page() {
         onLoginPage().loginToMailBox();
     }
 
